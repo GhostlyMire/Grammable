@@ -9,7 +9,6 @@ class GramsController < ApplicationController
     @gram.destroy
     redirect_to root_path
   end
-
   
   def update
     @gram = Gram.find_by_id(params[:id])
@@ -27,8 +26,9 @@ class GramsController < ApplicationController
   def new
     @gram = Gram.new
   end
-  
+
   def index
+    @grams = Gram.all
   end
 
   def show
@@ -54,7 +54,7 @@ class GramsController < ApplicationController
   private
   
   def gram_params
-    params.require(:gram).permit(:message)
+    params.require(:gram).permit(:message, :picture)
   end
 
   def render_not_found(status=:not_found)
